@@ -1,0 +1,14 @@
+# .gitattributes
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.webp binary
+*.gif binary
+*.ico binary
+*.avif binary
+*.mp4 binary
+*.webm binary
+*.mov binary
+*.woff binary
+*.woff2 binary

@@ -1,0 +1,38 @@
+# masters and source footage never enter git (§10)
+/media/
+
+#code examples too
+/code examples/
+
+# build output
+dist/
+# generated types
+.astro/
+
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# environment variables
+# secrets
+.env
+.env.*
+!.env.example
+
+# stray backups
+*.bak
+
+# macOS-specific files
+.DS_Store
+
+# Windows-specific files
+Thumbs.db
+desktop.ini
+
+# jetbrains setting folder
+.idea/
