@@ -1,0 +1,12 @@
+{
+  "name": "Frenchtown",
+  "region": "New Jersey",
+  "country": "United States",
+  "lat": 40.5262,
+  "lng": -75.0630,
+  "hero": "frenchtown.jpg",
+  "heroAlt": "The Delaware seen from the Frenchtown bridge",
+  "blurb": "An hour from the city and a different pace entirely.",
+  "accent": "#60452E",
+  "featured": true
+}

@@ -1,0 +1,12 @@
+{
+  "name": "Tropea",
+  "region": "Calabria",
+  "country": "Italy",
+  "lat": 38.6767,
+  "lng": 15.8983,
+  "hero": "tropea.jpg",
+  "heroAlt": "Cliffs above the Tyrrhenian coast at Tropea",
+  "blurb": "Cliffs, warm water, and nowhere to be.",
+  "accent": "#805539",
+  "featured": true
+}

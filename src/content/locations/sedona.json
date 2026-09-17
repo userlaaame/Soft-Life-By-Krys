@@ -1,0 +1,12 @@
+{
+  "name": "Sedona",
+  "region": "Arizona",
+  "country": "United States",
+  "lat": 34.8707,
+  "lng": -111.7586,
+  "hero": "",
+  "heroAlt": "",
+  "blurb": "Coming soon.",
+  "accent": "#805539",
+  "featured": false
+}

@@ -1,0 +1,12 @@
+{
+  "name": "Joshua Tree",
+  "region": "California",
+  "country": "United States",
+  "lat": 34.1347,
+  "lng": -116.3131,
+  "hero": "",
+  "heroAlt": "",
+  "blurb": "Coming soon.",
+  "accent": "#805539",
+  "featured": false
+}

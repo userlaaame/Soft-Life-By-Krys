@@ -1,0 +1,12 @@
+{
+    "name": "Brooklyn",
+    "region": "New York",
+    "country": "United States",
+    "lat": 40.7143,
+    "lng": -73.9568,
+    "hero": "brooklyn.jpg",
+    "heroAlt": "Late afternoon dinner in Williamsburg",
+    "blurb": "Coffee, gym, and a place worth the wait.",
+    "accent": "#376479",
+    "featured": true
+}
