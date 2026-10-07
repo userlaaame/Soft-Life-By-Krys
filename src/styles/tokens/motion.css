@@ -1,0 +1,26 @@
+/* Motion — non-negotiable rules, encoded.
+ * 1. One moving thing on screen at a time. The hero loop is the only
+ *    autonomous motion on the site.
+ * 2. Nothing moves on scroll in Phase 1.
+ * 3. Two durations only. No easing more elaborate than ease-out.
+ * 4. prefers-reduced-motion disables everything, including the hero.
+ * 5. No scroll hijacking, no snap, no smooth-scroll override.
+ */
+
+:root {
+  --t-quick: 160ms;  /* @kind other */   /* hover, focus, underline */
+  --t-slow:  600ms;  /* @kind other */   /* anything larger: fades, poster-to-video */
+  --ease:    ease-out;  /* @kind other */
+
+  --reveal-shift: 12px;   /* Phase 2 ceiling. Never exceed. */
+}
+
+/* Reduced motion means off, not "less". No exceptions, including hero. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,10 @@
+/* Aspect ratios. A fixed set -- no ratio outside it appears in a stylesheet. */
+:root {
+  --ratio-tile:  4 / 5;    /* her feed's native portrait crop */
+  --ratio-cover: 3 / 2;    /* post covers */
+  --ratio-tall:  9 / 16;   /* vertical video, if ever contained */
+}
+
+/* Breakpoint: 48rem (768px).
+ * Custom properties can't be used inside @media conditions, so this lives as
+ * a comment, not a token. Every media query in the project uses 48rem. */

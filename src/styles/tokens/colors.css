@@ -1,0 +1,66 @@
+/* Colour — extracted from Krys's own photography, not invented.
+ * See guidelines/palette-extract.py for derivation and
+ * guidelines/contrast-check.py for the measured ratios.
+ *
+ * The recurring structure in her work: cool sky above, warm earth below,
+ * deep silhouette between. The page is the sky. The places bring the warmth.
+ */
+
+:root {
+  /* ---- base ---------------------------------------------------------- */
+  --ink:   #17110F;   /* silhouette black, warm-tinted   13.63:1 on haze */
+  --dusk:  #3E4D5D;   /* deep cool blue                   6.12:1 on haze */
+  --haze:  #D6D9DE;   /* pale sky — the page ground                      */
+  --paper: #E6E8EB;   /* lifted surfaces — cards, panels                 */
+  --sand:  #DBAA83;   /* warm fill ONLY — never text      2.51:1 on haze */
+
+  /* Warm-earth fills, from the sand/ochre family in her grid.
+   * All fill-only. None of these is legal as text on any ground. */
+  --sand-deep: #C99C77;
+  --sand-lit:  #E7B890;
+  --clay:      #B28766;
+
+  /* Cool-dusk fills and rules, from the blue-hour family. */
+  --dusk-mid:  #427992;
+  --dusk-lift: #6A91B5;
+
+  /* ---- per-location accent ------------------------------------------- */
+  /* The accent is a data field on the location, not decoration. On a page
+   * about a place it is the ONLY chroma present: rules, link underlines,
+   * the date. Nothing else. Set it by writing data-location on <html> or
+   * on the section, or by setting --accent inline from the collection. */
+  --accent: #376479;              /* default: coast */
+
+  /* ---- semantic aliases ---------------------------------------------- */
+  --text-body:     var(--ink);
+  --text-heading:  var(--dusk);
+  --text-quiet:    #4A545E;       /* 5.46:1 on haze — captions, meta */
+  --text-accent:   var(--accent);
+  --text-on-ink:   var(--haze);
+
+  --surface-page:  var(--haze);
+  --surface-card:  var(--paper);
+  --surface-field: var(--ink);    /* footer / contact field, inverted */
+  --surface-fill:  var(--sand);   /* warm blocks, coming-soon tiles  */
+  /* Map water. Darker than the page so the coastline reads without adding
+   * weight to the hairline. --dusk clears AA on it (5.06:1); --text-quiet
+   * does NOT (4.40:1), so map labels use --dusk. */
+  --surface-sea:   color-mix(in oklab, var(--dusk) 14%, var(--haze));
+
+  --rule:          color-mix(in oklab, var(--dusk) 28%, transparent);
+  --rule-strong:   var(--dusk);
+  --rule-accent:   var(--accent);
+
+  --focus-ring:    var(--dusk);
+}
+
+/* Per-location accents, AA-safe on --haze.
+ * PLACEHOLDERS — derived from the earlier location set, not yet re-extracted
+ * from Brooklyn / Frenchtown / Tropea footage. Re-run palette-extract.py on
+ * the new footage, then push each candidate through contrast-check.py's
+ * darken() before shipping it. */
+[data-location='brooklyn']    { --accent: #376479; }  /* placeholder */
+[data-location='frenchtown']  { --accent: #60452E; }  /* placeholder */
+[data-location='tropea']      { --accent: #805539; }  /* placeholder */
+/* sedona + joshua-tree are data-only at launch and carry no accent yet;
+ * they inherit the coast default in their coming-soon state. */

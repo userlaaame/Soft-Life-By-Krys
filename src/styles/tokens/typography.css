@@ -1,0 +1,70 @@
+/* Type — three faces, each with one job.
+ * Script:  Allura. Her voice. Wordmark, hero line, post titles, pull quotes,
+ *          signature. Never on anything a reader operates; never below --step-1.
+ * Body:    Karla (variable). Reading text AND all structure: section headings,
+ *          subheads, tile place names.
+ * Utility: DM Mono. Small, wide-tracked, uppercase. Location labels and dates only.
+ *
+ * Script sizing note: Allura's apparent size runs roughly 40% under a serif
+ * at the same px, its strokes are hairline-thin, and its ascenders and
+ * descenders are long. Script roles therefore carry their own larger steps
+ * and looser leading — do not set script below --step-1, and never over a
+ * busy or low-contrast ground.
+ */
+
+:root {
+  --font-script: 'Allura', Georgia, serif;
+  /* no 'cursive' -- that's Comic Sans on Windows */
+  --font-body: 'Karla Variable', system-ui, sans-serif;
+  --font-utility: 'DM Mono', ui-monospace, monospace;
+
+  /* 1.25 ratio, fluid between 380px and 1200px */
+  --step--1: clamp(0.83rem, 0.80rem + 0.15vw, 0.89rem);
+  --step-0: clamp(1.00rem, 0.95rem + 0.25vw, 1.13rem);
+  --step-1: clamp(1.25rem, 1.15rem + 0.50vw, 1.56rem);
+  --step-2: clamp(1.56rem, 1.35rem + 1.05vw, 2.44rem);
+  --step-3: clamp(1.95rem, 1.55rem + 2.00vw, 3.81rem);
+
+
+  /* Script steps — larger than the serif equivalents to match apparent size */
+  --step-script-sm: clamp(1.45rem, 1.20rem + 1.05vw, 2.20rem);
+  --step-script-title: clamp(2.10rem, 1.60rem + 2.10vw, 3.60rem);
+  --step-script-hero: clamp(3.00rem, 2.10rem + 4.00vw, 6.25rem);
+
+  --weight-light: 300;
+  --weight-regular: 400;
+  --weight-medium: 500;
+
+  --leading-display: 1.04;
+  --leading-title: 1.14;
+  --leading-script: 1.28;
+  /* script needs room for ascenders/descenders */
+  --leading-body: 1.62;
+  --leading-tight: 1.3;
+
+  --tracking-display: -0.02em;
+  --tracking-script: 0;
+  /* never negative — it breaks the joins */
+  --tracking-body: 0;
+  --tracking-utility: 0.14em;
+  /* DM Mono, uppercase */
+
+  --measure: 62ch;
+  --measure-short: 42ch;
+
+  /* ---- semantic roles ------------------------------------------------ */
+  /* Script roles — her voice */
+  --type-hero: var(--weight-regular) var(--step-script-hero)/var(--leading-script) var(--font-script);
+  --type-title: var(--weight-regular) var(--step-script-title)/var(--leading-script) var(--font-script);
+  --type-quote: var(--weight-regular) var(--step-script-title)/1.4 var(--font-script);
+  --type-signature: var(--weight-regular) var(--step-script-sm)/1.25 var(--font-script);
+  --type-section: var(--weight-medium) var(--step-2)/var(--leading-tight) var(--font-body);
+  --type-wordmark: var(--weight-regular) var(--step-script-sm)/1 var(--font-script);
+
+    --type-subhead: var(--weight-medium) var(--step-1)/var(--leading-tight) var(--font-body);
+  --type-lead: var(--weight-light) var(--step-1)/var(--leading-tight) var(--font-body);
+  --type-body: var(--weight-regular) var(--step-0)/var(--leading-body) var(--font-body);
+  --type-small: var(--weight-regular) var(--step--1)/var(--leading-body) var(--font-body);
+  --type-utility: var(--weight-regular) var(--step--1)/1 var(--font-utility);
+  --type-place: var(--weight-medium) var(--step-1)/var(--leading-tight) var(--font-body);
+}

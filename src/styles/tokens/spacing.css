@@ -1,0 +1,27 @@
+/* Rhythm — seven values. No number outside this set appears in a stylesheet.
+ * The whitespace is the design: when in doubt go one step up, not down. */
+
+:root {
+  --space-2xs: 0.5rem;
+  --space-xs:  0.75rem;
+  --space-s:   1rem;
+  --space-m:   1.5rem;
+  --space-l:   2.5rem;
+  --space-xl:  4rem;
+  --space-2xl: 6.5rem;
+
+  /* Section separation. A page is a stack of --space-2xl bands. */
+  --band:      var(--space-2xl);
+  --gutter:    var(--space-m);
+  --page-max:  75rem;
+
+  /* Corners stay close to square. The softness is in the type and the
+   * whitespace, never in a border radius. */
+  --radius-0: 0;
+  --radius-s: 2px;
+  --radius-m: 4px;
+
+  /* Hairlines only. This system has no shadow scale — nothing floats. */
+  --border-hair: 1px;
+  --border-rule: 1px;
+}

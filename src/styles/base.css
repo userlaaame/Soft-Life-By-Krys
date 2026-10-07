@@ -1,0 +1,122 @@
+/* Base — the minimum the document needs. Not a framework.
+ * Link colours are defined here so links added later never render browser blue. */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    margin: 0;
+    background: var(--surface-page);
+    color: var(--text-body);
+    font: var(--type-body);
+    letter-spacing: var(--tracking-body);
+    text-wrap: pretty;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+    margin: 0;
+    color: var(--text-heading);
+}
+/* One script h1 per page. Everything structural is Karla. */
+
+h1 {
+    font: var(--type-title);
+    letter-spacing: var(--tracking-script);
+}
+
+h2 {
+    font: var(--type-section);
+    letter-spacing: var(--tracking-body);
+}
+
+h3 {
+    font: var(--type-subhead);
+    letter-spacing: var(--tracking-body);
+}
+
+blockquote {
+    margin: var(--space-l) 0;
+    font: var(--type-quote);
+    color: var(--text-heading);
+    max-width: var(--measure-short);
+}
+
+p {
+    margin: 0 0 var(--space-s);
+    max-width: var(--measure);
+}
+
+a {
+    color: var(--text-body);
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.22em;
+    transition: text-decoration-color var(--t-quick) var(--ease), color var(--t-quick) var(--ease);
+}
+
+@media (hover: hover) {
+    a:hover {
+        color: var(--text-accent);
+        text-decoration-thickness: 2px;
+    }
+}
+
+a:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 3px;
+}
+
+hr {
+    border: 0;
+    border-top: var(--border-rule) solid var(--rule);
+    margin: var(--space-l) 0;
+}
+
+img,
+video {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+::selection {
+    background: var(--sand);
+    color: var(--ink);
+}
+
+.prose a {
+    text-decoration: none;
+    padding-bottom: 0.12em;
+    background-image:
+        linear-gradient(var(--accent), var(--accent)),
+        linear-gradient(var(--accent), var(--accent));
+    background-repeat: no-repeat;
+    background-position: 0 100%, 0 100%;
+    background-size: 0% 2px, 100% 1px;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    transition: background-size var(--t-quick) var(--ease), color var(--t-quick) var(--ease);
+}
+
+@media (hover: hover) {
+    .prose a:hover {
+        background-size: 100% 2px, 100% 1px;
+        color: var(--accent);
+    }
+}
+
+.prose a:focus-visible {
+    background-size: 100% 2px, 100% 1px;
+    color: var(--accent);
+}

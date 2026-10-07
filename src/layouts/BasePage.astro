@@ -1,4 +1,10 @@
 ---
+import '@fontsource/allura/400.css';
+import '@fontsource-variable/karla';
+import '@fontsource/dm-mono/400.css';
+import '../styles/global.css';
+import allura from '@fontsource/allura/files/allura-latin-400-normal.woff2?url';
+
 export interface Props {
   title: string;
   description?: string;
@@ -6,6 +12,7 @@ export interface Props {
 }
 
 const { title, description, noindex = false } = Astro.props;
+const prelaunch = import.meta.env.PUBLIC_PRELAUNCH === 'true';
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 <!doctype html>
@@ -16,8 +23,8 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <title>{title}</title>
     {description && <meta name="description" content={description} />}
     <link rel="canonical" href={canonical} />
-    {noindex && <meta name="robots" content="noindex, nofollow" />}
-
+    <link rel="preload" href={allura} as="font" type="font/woff2" crossorigin />
+    {(noindex || prelaunch) && <meta name="robots" content="noindex, nofollow" />} 
     <!-- Sec 12: shared links must preview correctly on Instagram and Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
