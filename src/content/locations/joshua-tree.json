@@ -4,9 +4,9 @@
   "country": "United States",
   "lat": 34.1347,
   "lng": -116.3131,
-  "hero": "",
-  "heroAlt": "",
-  "blurb": "Coming soon.",
+  "hero": "../../assets/tiles/joshua-tree.jpg",
+  "heroAlt": "Joshua trees in the desert landscape",
+  "blurb": "A desert landscape dotted with iconic Joshua trees.",
   "accent": "#805539",
-  "featured": false
+  "featured": true
 }

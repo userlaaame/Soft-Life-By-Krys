@@ -3,31 +3,39 @@ import { z } from 'astro/zod';
 import { glob } from 'astro/loaders';
 
 const blog = defineCollection({
-    loader: glob ({ pattern: '**/*.mdx', base: './src/content/blog' }),
-    schema: z.object({
-    title:       z.string().max(70),          // OG titles truncate past ~70
-    description: z.string().min(50).max(160), // forces a real meta description
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/blog' }),
+  schema: ({ image }) => z.object({
+    title:       z.string().max(70),
+    description: z.string().min(50).max(160),
     date:        z.coerce.date(),
-    location:    z.enum(['brooklyn', 'frenchtown', 'tropea']), //due to changes in Phase 2, this is now a required field
-    cover:       z.string(),
-    coverAlt:    z.string(),                  // required: a11y ≥95 is contractual
-    draft:       z.boolean().default(true),   // opt-in publishing
+    location:    z.enum(['brooklyn', 'frenchtown', 'tropea', 'sedona', 'joshua-tree']),
+    cover:       image().optional(),     // falls back to the location's tile photo
+    coverAlt:    z.string().optional(),
+    dek:         z.string().max(90).optional(),
+    draft:       z.boolean().default(true),
+  }).refine((d) => !d.cover || d.coverAlt, {
+    message: 'coverAlt is required when cover is set',
+    path: ['coverAlt'],
   }),
 });
 
 const locations = defineCollection({
   loader: glob({ pattern: '**/*.json', base: './src/content/locations' }),
-  schema: z.object({
-    name:    z.string(),          // "Brooklyn"
-    region:  z.string(),          // "New York"
-    country: z.string(),          // "United States"
-    lat:     z.number(),          // unused in Phase 1 free for the Phase 2 map
-    lng:     z.number(),
-    hero:    z.string(),
-    heroAlt: z.string(),          
-    blurb:   z.string().max(120),
-    accent:  z.string().regex(/^#[0-9A-Fa-f]{6}$/), // hex color for map pin
-    featured: z.boolean().default(false), // false = in the data, off the homepage
+  schema: ({ image }) => z.object({
+    name:     z.string(),
+    region:   z.string(),
+    country:  z.string(),
+    lat:      z.number(),
+    lng:      z.number(),
+    hero:     image().optional(),
+    heroAlt:  z.string().optional(),
+    focus:    z.string().default('50% 50%'),            // object-position for the photo
+    blurb:    z.string().max(120),
+    accent:   z.string().regex(/^#[0-9A-Fa-f]{6}$/),   // this place's accent colour
+    featured: z.boolean().default(false),
+  }).refine((d) => !d.hero || d.heroAlt, {
+    message: 'heroAlt is required when hero is set',
+    path: ['heroAlt'],
   }),
 });
 

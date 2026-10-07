@@ -4,9 +4,9 @@
   "country": "United States",
   "lat": 34.8707,
   "lng": -111.7586,
-  "hero": "",
-  "heroAlt": "",
-  "blurb": "Coming soon.",
+  "hero": "../../assets/tiles/sedona.jpg",
+  "heroAlt": "Red rock formations in Sedona",
+  "blurb": "A desert town surrounded by red rock formations.",
   "accent": "#805539",
-  "featured": false
+  "featured": true
 }
