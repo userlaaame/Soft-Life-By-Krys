@@ -1,0 +1,21 @@
+---
+// src/pages/index.astro
+import BasePage from '../layouts/BasePage.astro';
+import HeroLoop from '../components/HeroLoop.astro';
+---
+<BasePage
+  title="Soft Life by Krys"
+  description="Slow travel and soft living, from an hour away to the other side of the world."
+>
+  <HeroLoop>
+    <h1 class="hero-line">Ease is not a plane ticket.</h1>
+    <p class="hero-sub">
+      Most of it an hour away: a Saturday, a café, a river town. Some of it farther.
+    </p>
+  </HeroLoop>
+</BasePage>
+
+<style>
+  .hero-line { font: var(--type-hero); color: var(--haze); margin: 0 0 var(--space-s); }
+  .hero-sub  { color: var(--haze); max-width: 36ch; }
+</style>

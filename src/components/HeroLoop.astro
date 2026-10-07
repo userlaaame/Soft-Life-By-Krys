@@ -1,0 +1,69 @@
+---
+// src/components/HeroLoop.astro
+---
+<section class="hero">
+  <div class="hero-media" aria-hidden="true">
+    <picture>
+      <source media="(min-width: 48rem)" srcset="/hero/wide-poster.jpg" />
+      <img class="hero-poster" src="/hero/tall-poster.jpg" alt="" fetchpriority="high" />
+    </picture>
+    <video class="hero-video" muted loop playsinline preload="none"></video>
+  </div>
+  <div class="hero-copy"><slot /></div>
+</section>
+
+<script is:inline>
+  (() => {
+    const v = document.querySelector('.hero-video');
+    if (!v || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const clip = matchMedia('(min-width: 48rem)').matches ? '/hero/wide' : '/hero/tall';
+    v.innerHTML = `<source src="${clip}.webm" type="video/webm">
+                   <source src="${clip}.mp4"  type="video/mp4">`;
+    v.addEventListener('playing', () => v.classList.add('is-playing'), { once: true });
+    v.load();
+    v.play().catch(() => {});
+  })();
+</script>
+
+<style>
+  .hero {
+    position: relative;
+    isolation: isolate;
+    min-height: 92vh;
+    min-height: 92svh;   /* ignores the mobile URL bar, no jump on scroll */
+    display: grid;
+    align-items: end;
+    overflow: hidden;
+    background: var(--ink);
+  }
+  .hero-media,
+  .hero-media picture,
+  .hero-poster,
+  .hero-video { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .hero-media { z-index: -2; }
+  .hero-poster,
+  .hero-video { object-fit: cover; object-position: 50% 60%; }
+
+  .hero-video { opacity: 0; transition: opacity var(--t-slow) var(--ease); }
+  .hero-video.is-playing { opacity: 1; }
+
+  /* Measured against the dusk clip: 45% over sky, 65% where the copy sits */
+  .hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(to bottom,
+      rgb(23 17 15 / 0.45) 0%,  rgb(23 17 15 / 0.45) 45%,
+      rgb(23 17 15 / 0.65) 55%, rgb(23 17 15 / 0.65) 100%);
+  }
+  @media (min-width: 48rem) {
+    .hero::after {
+      background: linear-gradient(to right,
+        rgb(23 17 15 / 0.45) 0%,  rgb(23 17 15 / 0.45) 30%,
+        rgb(23 17 15 / 0.75) 50%, rgb(23 17 15 / 0.75) 100%);
+    }
+    .hero-copy { justify-self: end; width: min(50%, 36rem); }
+  }
+  .hero-copy { padding: var(--space-xl) var(--gutter); }
+</style>
