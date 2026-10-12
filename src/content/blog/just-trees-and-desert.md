@@ -4,7 +4,7 @@ description: "A secluded rental, a pool, a firepit and a new-moon sky. The best 
 date: 2026-09-15
 location: joshua-tree
 dek: "Desert quiet, firepits, and a sky full of stars"
-draft: true
+draft: false
 ---
 
 Why is there so much hype around Joshua Tree? I mean, it's literally just a bunch of trees and desert… right?

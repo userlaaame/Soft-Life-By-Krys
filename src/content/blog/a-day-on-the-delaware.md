@@ -4,7 +4,7 @@ description: "An hour from the city: coffee first, then a museum, a bookstore, a
 date: 2026-03-15
 location: frenchtown
 dek: "A small-town escape on the Delaware River"
-draft: true
+draft: false
 ---
 
 Growing up in NJ, the closest thing to a vacation you get on a staycation is the Jersey Shore. But I needed a break from work and an escape from the hustle of life, and that's how I found Frenchtown. This small town sits along the Delaware River and is full of restaurants, boutique shops, art, cafés, and museums.

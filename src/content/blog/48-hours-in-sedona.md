@@ -4,7 +4,7 @@ description: "Red rocks, a creek you can swim in, and an arts village straight o
 date: 2025-06-15
 location: sedona
 dek: "48 hours among the red rocks"
-draft: true
+draft: false
 ---
 
 I'd heard a lot about Sedona namely, that it's one of the few vortexes in the world. Many people who live in or visit Sedona are deeply spiritual and come for its healing, positive energy. As someone who was definitely on the spiritual path but sort of fell off, I can understand the hype.
