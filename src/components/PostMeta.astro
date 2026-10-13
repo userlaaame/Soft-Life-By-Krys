@@ -1,0 +1,22 @@
+---
+interface Props { place?: string; date: Date }
+const { place, date } = Astro.props;
+
+const label = date.toLocaleDateString('en-US', {
+  year: 'numeric', month: 'long', day: 'numeric',
+  timeZone: 'UTC',          // see below -- this line matters
+});
+---
+<p class="meta">
+  {place && <span>{place}</span>}
+  <time datetime={date.toISOString().slice(0, 10)}>{label}</time>
+</p>
+
+<style>
+  .meta {
+    display: flex; flex-wrap: wrap; gap: var(--space-s); margin: 0;
+    font: var(--type-utility); letter-spacing: var(--tracking-utility); text-transform: uppercase;
+  }
+  span { color: var(--text-quiet); }
+  time { color: var(--accent); }        /* the place's colour lives on the date */
+</style>

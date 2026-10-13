@@ -1,27 +1,59 @@
 ---
-import { render } from 'astro:content';
-import { getPublishedPosts } from '../../lib/publishing';
+import { render, getEntry } from 'astro:content';
+import { Image } from 'astro:assets';
 import BasePage from '../../layouts/BasePage.astro';
+import PostMeta from '../../components/PostMeta.astro';
+import { getPublishedPosts } from '../../lib/publishing';
 
 export async function getStaticPaths() {
   const posts = await getPublishedPosts();
-  return posts.map((post) => ({
-    params: { slug: post.id },
-    props: { post },
-  }));
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
 }
 
 const { post } = Astro.props;
 const { Content } = await render(post);
+const place = await getEntry('locations', post.data.location);
+
+// The post's own cover if it has one, otherwise its location's tile photo
+const cover    = post.data.cover    ?? place?.data.hero;
+const coverAlt = post.data.coverAlt ?? place?.data.heroAlt ?? '';
 ---
-<BasePage title={post.data.title} description={post.data.description}>
-  <article>
-    <h1>{post.data.title}</h1>
-    <time datetime={post.data.date.toISOString()}>
-      {post.data.date.toLocaleDateString('en-US', {
-        year: 'numeric', month: 'long', day: 'numeric',
-      })}
-    </time>
-    <Content />
+<BasePage title={`${post.data.title} | Soft Life by Krys`} description={post.data.description}>
+  <article class="post" style={place ? `--accent: ${place.data.accent}` : undefined}>
+    <header class="post-head">
+      <PostMeta place={place?.data.name} date={post.data.date} />
+      <h1>{post.data.title}</h1>
+      {post.data.dek && <p class="dek">{post.data.dek}</p>}
+    </header>
+
+    {cover && (
+      <figure class="cover">
+        <Image src={cover} alt={coverAlt} widths={[480, 768, 1200]}
+               sizes="(min-width: 48rem) 48rem, 100vw" loading="eager" fetchpriority="high" />
+      </figure>
+    )}
+
+    <div class="prose"><Content /></div>
   </article>
 </BasePage>
+
+<style>
+  .post {
+    max-width: calc(var(--measure) + 2 * var(--gutter));
+    margin-inline: auto;
+    padding: var(--space-xl) var(--gutter) var(--space-2xl);
+  }
+  .post-head { display: grid; gap: var(--space-s); margin-bottom: var(--space-l); }
+  .post-head h1 { margin: 0; }
+  .dek { font: var(--type-lead); color: var(--text-quiet); margin: 0; }
+
+  .cover {
+    margin: 0 0 var(--space-l);
+    aspect-ratio: var(--ratio-cover);
+    overflow: hidden; border-radius: var(--radius-s);
+  }
+  .cover :global(img) { width: 100%; height: 100%; object-fit: cover; }
+
+  .prose :global(h2) { margin-top: var(--space-l); }
+  .prose :global(hr) { margin-block: var(--space-l); }
+</style>
