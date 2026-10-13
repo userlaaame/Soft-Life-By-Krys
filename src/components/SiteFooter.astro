@@ -1,0 +1,47 @@
+---
+import SocialLinks from './SocialLinks.astro';
+
+const year = new Date().getFullYear();
+const links = [
+  { label: 'Blog',    href: '/blog' },
+  { label: 'About',   href: '/about' },
+  { label: 'Contact', href: '/contact' },
+];
+---
+<footer class="site-footer">
+  <div class="inner">
+    <p class="note">Ease is not a plane ticket.</p>
+    <div class="row">
+      <nav aria-label="Footer">
+        <ul>
+          {links.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
+        </ul>
+      </nav>
+      <SocialLinks tone="onInk" />
+    </div>
+    <p class="credit">
+      &copy; {year} Soft Life by Krys &middot; Site by <a href="https://YOUR-SITE">Brian Jackson Jr.</a>
+    </p>
+  </div>
+</footer>
+
+<style>
+  .site-footer { background: var(--surface-field); color: var(--text-on-ink); }
+  .inner {
+    max-width: var(--page-max); margin-inline: auto;
+    padding: var(--space-xl) var(--gutter);
+    display: grid; gap: var(--space-l);
+  }
+  .note { font: var(--type-title); letter-spacing: var(--tracking-script); max-width: 20ch; margin: 0; }
+  .row { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-m); }
+  ul { display: flex; flex-wrap: wrap; gap: var(--space-m); list-style: none; margin: 0; padding: 0; }
+  nav a, .credit {
+    font: var(--type-utility); letter-spacing: var(--tracking-utility); text-transform: uppercase;
+    color: var(--text-on-ink); opacity: 0.8;
+  }
+  nav a { text-decoration: none; transition: opacity var(--t-quick) var(--ease); }
+  @media (hover: hover) { nav a:hover { opacity: 1; } }
+  .credit { margin: 0; }
+  .credit a { color: inherit; }
+  a:focus-visible { outline-color: var(--text-on-ink); }
+</style>

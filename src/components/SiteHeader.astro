@@ -1,0 +1,60 @@
+---
+interface Props { overlay?: boolean }
+const { overlay = false } = Astro.props;
+
+const links = [
+  { label: 'Blog',    href: '/blog' },
+  { label: 'About',   href: '/about' },
+  { label: 'Contact', href: '/contact' },
+];
+
+// "/blog/just-trees-and-desert" should still mark Blog as the current section
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isCurrent = (href: string) => path === href || path.startsWith(href + '/');
+---
+<header class:list={['site-header', { overlay }]}>
+  <div class="inner">
+    <a class="wordmark" href="/">Soft Life by Krys</a>
+    <nav aria-label="Main">
+      <ul>
+        {links.map((l) => (
+          <li>
+            <a href={l.href} aria-current={isCurrent(l.href) ? 'page' : undefined}>{l.label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header { border-bottom: var(--border-rule) solid var(--rule); }
+  .inner {
+    max-width: var(--page-max); margin-inline: auto;
+    padding: var(--space-m) var(--gutter);
+    display: flex; flex-wrap: wrap; align-items: baseline;
+    justify-content: space-between; gap: var(--space-m);
+  }
+  .wordmark {
+    font: var(--type-wordmark); letter-spacing: var(--tracking-script);
+    color: var(--text-heading); text-decoration: none;
+  }
+  ul { display: flex; flex-wrap: wrap; gap: var(--space-m); list-style: none; margin: 0; padding: 0; }
+  nav a {
+    font: var(--type-utility); letter-spacing: var(--tracking-utility); text-transform: uppercase;
+    color: var(--text-quiet); text-decoration: none;
+    padding-bottom: 2px; border-bottom: 1px solid transparent;
+    transition: color var(--t-quick) var(--ease), border-color var(--t-quick) var(--ease);
+  }
+  nav a[aria-current='page'] { color: var(--text-accent); border-bottom-color: var(--accent); }
+  @media (hover: hover) { nav a:hover { color: var(--text-body); } }
+  nav a:focus-visible { color: var(--text-body); }
+
+  /* Homepage: on the video. The nav band was part of the veil measurements. */
+  .overlay { position: absolute; inset: 0 0 auto 0; z-index: 1; border-bottom-color: transparent; }
+  .overlay .wordmark,
+  .overlay nav a { color: var(--text-on-ink); }
+  .overlay nav a[aria-current='page'] { border-bottom-color: var(--text-on-ink); }
+  @media (hover: hover) { .overlay nav a:hover { border-bottom-color: var(--text-on-ink); } }
+  .overlay a:focus-visible { outline-color: var(--text-on-ink); }
+</style>
